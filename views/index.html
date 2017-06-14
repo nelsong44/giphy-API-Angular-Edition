@@ -14,8 +14,17 @@
     <div ng-controller='GiphyController as gc' ng-init='gc.baseFunction()'>
       stuff here
       <input ng-model='gc.input' class='userInput' type='text' placeholder='Keyword Search'>
-      <button ng-click='gc.searchKeyword()' class='search' type='button' placeholder='Search'></button>
+      <button ng-click='gc.searchKeyword()' class='search' type='button' placeholder='Search'>Search</button>
       <button ng-click='gc.randomGiphy()'  class='random' type='button'>Random</button>
-      <!-- <p>{{vm.searchKeyword}}</p> -->
+      <div class="row">
+        <div class="col-md-6">
+          <img ng-repeat='gif in gc.search' ng-src="{{gif.images.downsized.url}}" alt="gc.input">
+        </div>
+        <div class="col-md-6">
+          <img ng-src="{{gc.images.downsized.url}}" alt="gc.input">
+        </div>
+      </div>
+
+
   </body>
 </html>

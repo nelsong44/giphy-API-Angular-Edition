@@ -6,6 +6,7 @@ giphyApp.controller('GiphyController', function($http) { //$http bullt-in- have 
     console.log('NG linked');
     var vm = this; //references our GiphyController
     vm.gifArray = [];
+    // function to retrieve gifs from giphy API based on user-input to display on DOM
     vm.searchKeyword = function() {
       console.log('called searchKeyword()');
       $http({
@@ -13,14 +14,22 @@ giphyApp.controller('GiphyController', function($http) { //$http bullt-in- have 
         url: 'http://api.giphy.com/v1/gifs/search?q=' +  vm.input + '&api_key=dc6zaTOxFJmzC'
       }).then(function(response) {
         console.log('back with', response); //gif as object-array of 25 objects matching keyword search //response.data[i].url
-        vm.gifArray.push(response.data[i].url);
+        console.log(response.data.data[0].images.downsized.url);
+        vm.search = response.data.data;
+        console.log(vm.search);
       }); //end get
-    //empty input field after button click
-    searchKeyword = '';
   }; // end searchKeyword
 
   vm.randomGiphy = function() {
-    console.log('randomGiphy');
+    $http({
+      method: 'GET',
+      url: 'http://api.giphy.com/v1/gifs/search?q=' +  vm.input + '&api_key=dc6zaTOxFJmzC'
+    }).then(function(response) {
+      console.log('back with', response);
+
+      vm.random = response.data.data;
+      console.log(vm.search);
+    }); // end then
   }; // end randomGiphy
 
-}); //end baseFunction
+}); //end controller
