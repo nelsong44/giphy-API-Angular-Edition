@@ -23,12 +23,12 @@ giphyApp.controller('GiphyController', function($http) { //$http bullt-in- have 
   vm.randomGiphy = function() {
     $http({
       method: 'GET',
-      url: 'http://api.giphy.com/v1/gifs/search?q=' +  vm.input + '&api_key=dc6zaTOxFJmzC'
+      url: 'http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&'
     }).then(function(response) {
       console.log('back with', response);
-
+      console.log(response.data.data.url);
       vm.random = response.data.data;
-      console.log(vm.search);
+      console.log(vm.random);
     }); // end then
   }; // end randomGiphy
 
